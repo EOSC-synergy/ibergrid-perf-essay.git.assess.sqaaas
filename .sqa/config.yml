@@ -1,0 +1,76 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/ibergrid-perf-essay:
+      branch: main
+      repo: https://github.com/EOSC-synergy/ibergrid-perf-essay.git
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: release/1.7.11
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/EOSC-synergy/ibergrid-perf-essay git:
+        commands:
+        - /usr/bin/env sh .sqa/script.wimpy-cinnamon-crane.sh
+        container: qc.acc_leaky-turquoise-mule
+  QC.Doc:
+    repos:
+      github.com/EOSC-synergy/ibergrid-perf-essay find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.cheeky-white-deer.sh
+        container: qc.doc_sickly-teal-sloth
+      github.com/EOSC-synergy/ibergrid-perf-essay git:
+        commands:
+        - /usr/bin/env sh .sqa/script.smelly-amaranth-chicken.sh
+        container: qc.doc_flimsy-persimmon-affenpinscher
+      github.com/EOSC-synergy/ibergrid-perf-essay markdownlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.lumpy-charcoal-chinook.sh
+        container: qc.doc_freaky-amaranth-birman
+      github.com/EOSC-synergy/ibergrid-perf-essay restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-pumpkin-barracuda.sh
+        container: qc.doc_slimy-rose-avocet
+  QC.Lic:
+    repos:
+      github.com/EOSC-synergy/ibergrid-perf-essay licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.stuffy-denim-discus.sh
+        container: qc.lic_slaphappy-rust-lobster
+  QC.Met:
+    repos:
+      github.com/EOSC-synergy/ibergrid-perf-essay validate_codemeta:
+        commands:
+        - /usr/bin/env sh .sqa/script.jumpy-xanthic-drever.sh
+        container: qc.met_woozy-tangerine-opossum
+  QC.Sec:
+    repos:
+      github.com/EOSC-synergy/ibergrid-perf-essay bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.slimy-copper-chameleon.sh
+        container: qc.sec_snappy-eggplant-woodpecker
+  QC.Sty:
+    repos:
+      github.com/EOSC-synergy/ibergrid-perf-essay flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.thirsty-wisteria-quokka.sh
+        container: qc.sty_thirsty-rose-bloodhound
+      github.com/EOSC-synergy/ibergrid-perf-essay hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.baggy-brass-newfoundland.sh
+        container: qc.sty_tasty-alizarin-collie
+      github.com/EOSC-synergy/ibergrid-perf-essay jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flimsy-sapphire-goat.sh
+        container: qc.sty_homely-blue-molly
+  QC.Ver:
+    repos:
+      github.com/EOSC-synergy/ibergrid-perf-essay get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.clammy-goldenrod-bobcat.sh
+        container: qc.ver_grumpy-carmine-affenpinscher
+timeout: 5400
